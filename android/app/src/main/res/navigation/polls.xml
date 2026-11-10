@@ -1,0 +1,13 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/polls_graph"
+    app:startDestination="@id/poll_list">
+    <fragment android:id="@+id/poll_list" android:name="ru.hse.uiseminar.polls.PollListFragment" android:label="@string.app_name">
+        <action android:id="@+id/open_create" app:destination="@id/poll_create" />
+        <action android:id="@+id/open_poll" app:destination="@id/poll_detail" />
+    </fragment>
+    <fragment android:id="@+id/poll_create" android:name="ru.hse.uiseminar.polls.CreatePollFragment" android:label="@string.new_poll" />
+    <fragment android:id="@+id/poll_detail" android:name="ru.hse.uiseminar.polls.PollDetailFragment" android:label="@string.vote_title">
+        <argument android:name="pollId" app:argType="long" />
+    </fragment>
+</navigation>

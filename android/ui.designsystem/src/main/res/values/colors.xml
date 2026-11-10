@@ -1,0 +1,11 @@
+<resources>
+    <color name="ds_background">#F3F6FA</color>
+    <color name="ds_surface">#FFFFFF</color>
+    <color name="ds_text">#18263B</color>
+    <color name="ds_secondary_text">#54647A</color>
+    <color name="ds_primary">#244CBD</color>
+    <color name="ds_on_primary">#FFFFFF</color>
+    <color name="ds_selected_surface">#EAF0FF</color>
+    <color name="ds_border">#BDCADC</color>
+    <color name="ds_error">#B3261E</color>
+</resources>

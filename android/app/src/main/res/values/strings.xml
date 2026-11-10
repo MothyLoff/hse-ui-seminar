@@ -1,3 +1,35 @@
 <resources>
-    <string name="app_name">HSE UI Seminar</string>
+    <string name="app_name">Голосования</string>
+    <string name="new_poll">Новое голосование</string>
+    <string name="create_poll">Создать голосование</string>
+    <string name="open_poll">Открыть голосование</string>
+    <string name="view_results">Посмотреть результаты</string>
+    <string name="vote_title">Голосование</string>
+    <string name="back">Назад</string>
+    <string name="list_intro">Один вопрос. Два варианта. Решение за вами.</string>
+    <string name="empty_title">Пока нет голосований</string>
+    <string name="empty_description">Создайте первое — оно появится здесь.</string>
+    <string name="form_intro">Задайте вопрос и предложите два варианта ответа.</string>
+    <string name="question_label">Вопрос</string>
+    <string name="question_hint">Как проведём следующий семинар?</string>
+    <string name="first_answer_label">Первый вариант</string>
+    <string name="first_answer_hint">Например, разберём примеры</string>
+    <string name="second_answer_label">Второй вариант</string>
+    <string name="second_answer_hint">Например, напишем приложение</string>
+    <string name="required_field">Заполните это поле</string>
+    <string name="distinct_answers">Напишите два разных варианта ответа</string>
+    <string name="poll_open">Можно голосовать</string>
+    <string name="poll_voted">Вы уже проголосовали</string>
+    <string name="poll_summary">2 варианта · %1$s</string>
+    <string name="option_result">%1$s · %2$d%%</string>
+    <string name="own_vote_result">%1$s · Ваш выбор</string>
+    <string name="choose_one">Выберите один вариант. Результат появится сразу.</string>
+    <string name="vote_recorded">Ваш голос учтён. Ниже — результаты голосования.</string>
+    <string name="poll_missing">Голосование не найдено. Данные хранятся в памяти и очищаются после завершения процесса приложения.</string>
+    <plurals name="vote_count">
+        <item quantity="one">%d голос</item>
+        <item quantity="few">%d голоса</item>
+        <item quantity="many">%d голосов</item>
+        <item quantity="other">%d голосов</item>
+    </plurals>
 </resources>
