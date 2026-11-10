@@ -10,3 +10,9 @@
 /android/.idea/
 /android/local.properties
 /android/**/build/
+/.idea/
+/android/**/.gradle/
+/android/**/.kotlin/
+/android/**/.idea/
+/android/**/local.properties
+/android/**/*.iml
