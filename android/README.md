@@ -1,7 +1,10 @@
 # HSE UI Seminar · Android
 
-Минимальный запускаемый Android-проект. Реализация голосований, экраны, модели данных
+Минимальный запускаемый Android-проект на Android Views. Реализация голосований, экраны, модели данных
 и граф навигации намеренно не добавлены.
+
+Архитектура виджетов и DI: [ARCHITECTURE.md](ARCHITECTURE.md).
+Контракт для разработчика UI: [ui.designsystem/README.md](ui.designsystem/README.md).
 
 ## Запуск
 
@@ -18,7 +21,8 @@ Rabbit 2 (2026.2.2) или новее: более ранняя Rabbit 1 не п�
 Подсветка Kotlin и инспекции редактора работают после успешной синхронизации;
 наличие run configuration само по себе не исправляет ошибки Gradle Sync.
 
-- JDK 17+; Gradle JVM выбирается в настройках Android Studio.
+- Gradle daemon использует JDK 25 (`gradle/gradle-daemon-jvm.properties`);
+  целевой bytecode приложения — Java 17.
 - Android SDK Platform 37, Build Tools 36.0.0 (версия по умолчанию AGP).
 - Устройство/эмулятор Android 8.0+ (API 26).
 - Путь к SDK задаётся через `local.properties` (`sdk.dir=...`) или `ANDROID_HOME`.
@@ -30,7 +34,7 @@ Rabbit 2 (2026.2.2) или новее: более ранняя Rabbit 1 не п�
 ```
 
 Release включает R8 и resource shrinking; подпись для публикации не настроена.
-Unit/UI-тестовые зависимости подключены; тестовых сценариев пока нет.
+Подключены unit/UI-тестовые зависимости; базовые unit-тесты архитектуры находятся в `app/src/test`.
 
 ## Зависимости
 
@@ -41,22 +45,20 @@ Unit/UI-тестовые зависимости подключены; тесто
 | --- | --- |
 | Gradle Wrapper | 9.9.0 |
 | Android Gradle Plugin | 9.5.1 |
-| Kotlin / Compose compiler / Serialization plugin | 2.4.21 |
+| Kotlin / Serialization plugin | 2.4.21 |
 | KSP | 2.3.13 |
 | Dagger / Hilt | 2.60.1 |
-| Compose BOM | 2026.09.00 |
 | Core KTX / AppCompat / Activity | 1.19.1 / 1.8.0 / 1.13.0 |
-| Lifecycle / Navigation Compose / AndroidX Hilt | 2.11.0 / 2.10.2 / 1.4.0 |
+| Lifecycle / Navigation Fragments | 2.11.0 / 2.10.2 |
 | kotlinx.coroutines / kotlinx.serialization | 1.11.0 / 1.12.0 |
 
 AGP 9 использует встроенную поддержку Kotlin; `org.jetbrains.kotlin.android` и kapt
 не нужны. Версия встроенного Kotlin явно выровнена с compiler plugins через
 `buildscript`. Hilt подключён через KSP, есть `@HiltAndroidApp` Application и
-`@AndroidEntryPoint` Activity. Dagger API доступен напрямую. Для Compose ViewModel
-используется новый артефакт `hilt-lifecycle-viewmodel-compose`.
+`@AndroidEntryPoint` Activity. Dagger API доступен напрямую.
 
-Navigation Compose и Serialization готовы для типизированных маршрутов.
-Lifecycle подключён для ViewModel, SavedStateHandle и `collectAsStateWithLifecycle`.
+Подключены Navigation Fragment/UI, View Binding и Lifecycle для ViewModel и
+`repeatOnLifecycle`. Compose и его compiler plugin удалены.
 Библиотеки сети и БД не добавлены: для семинара достаточно состояния в памяти.
 
 ## Сборка
@@ -68,7 +70,7 @@ Jetifier выключен; включены incremental Kotlin/KSP, non-transiti
 Wrapper проверяет SHA-256 скачиваемого дистрибутива.
 
 У KSP 2.3.13 есть [известная регрессия при одновременной обработке нескольких
-модулей](https://github.com/google/ksp/issues/3286). Здесь один модуль `app`;
+модулей](https://github.com/google/ksp/issues/3286). KSP сейчас используется только в `app`;
 перед добавлением других модулей с KSP нужно обновиться до релиза с исправлением.
 
 Источники версий: [Gradle](https://gradle.org/releases/),
@@ -82,6 +84,7 @@ Wrapper проверяет SHA-256 скачиваемого дистрибути
 
 Локально успешно выполнены debug- и release-сборки (release с R8), Android Lint
 (`No issues found`), повторная сборка с `Configuration cache entry reused` и
-чистая сборка с восстановлением задач `FROM-CACHE`. Задача `testDebugUnitTest`
-настроена, но возвращает `NO-SOURCE`: тесты появятся вместе с реализацией.
+чистая сборка с восстановлением задач `FROM-CACHE` для исходного setup.
+После перехода на Views прошли debug/release-сборки, lint обоих модулей и
+3 unit-теста жизненного цикла виджетов.
 Запуск на устройстве/эмуляторе не выполнялся.

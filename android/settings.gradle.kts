@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "HseUiSeminar"
-include(":app")
+include(":app", ":ui.designsystem")
