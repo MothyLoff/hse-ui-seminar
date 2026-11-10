@@ -2,20 +2,18 @@ import SwiftUI
 
 struct PollView: View {
     let poll: Poll
+    var onOpen: (() -> Void)? = nil
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            VStack(alignment: .leading, spacing: 6) {
-                Text(poll.title)
-                    .font(.title3.weight(.semibold))
-
-                if let description = poll.description, !description.isEmpty {
-                    Text(description)
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
+            if let onOpen {
+                Button(action: onOpen) {
+                    header
                 }
+                .buttonStyle(.plain)
+            } else {
+                header
             }
-            .fixedSize(horizontal: false, vertical: true)
 
             VStack(spacing: 6) {
                 ForEach(poll.options) { option in
@@ -37,10 +35,22 @@ struct PollView: View {
         .foregroundStyle(.primary)
         .padding(20)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            .background.secondary,
-            in: RoundedRectangle(cornerRadius: 24)
-        )
+    }
+
+    private var header: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(poll.title)
+                .font(.title3.weight(.semibold))
+
+            if let description = poll.description, !description.isEmpty {
+                Text(description)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .fixedSize(horizontal: false, vertical: true)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .contentShape(Rectangle())
     }
 }
 

@@ -26,7 +26,6 @@ struct PollOptionView: View {
                     }
                 }
                 .frame(width: 24, height: 24)
-                .accessibilityHidden(true)
 
                 VStack(alignment: .leading, spacing: 10) {
                     HStack(alignment: .firstTextBaseline, spacing: 8) {
@@ -61,9 +60,6 @@ struct PollOptionView: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .accessibilityLabel(pollOption.title)
-        .accessibilityValue("\(percentage) процентов, голосов: \(pollOption.votes)")
-        .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }
 

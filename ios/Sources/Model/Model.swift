@@ -23,8 +23,6 @@ final class Model {
 }
 
 
-#if DEBUG
-
 extension Model {
     
     static func dbg() -> Model {
@@ -41,17 +39,17 @@ extension Model {
                 Poll(
                     title: "Сколько получили за акос",
                     options: [
-                        PollOption(title: "10", votes: 0),
-                        PollOption(title: "9", votes: 0),
-                        PollOption(title: "8", votes: 0),
-                        PollOption(title: "7", votes: 0),
-                        PollOption(title: "6", votes: 0),
-                        PollOption(title: "5", votes: 0),
-                        PollOption(title: "4", votes: 0),
-                        PollOption(title: "3", votes: 0),
-                        PollOption(title: "2", votes: 0),
-                        PollOption(title: "1", votes: 0),
-                        PollOption(title: "0", votes: 0),
+                        PollOption(title: "10", votes: 3),
+                        PollOption(title: "9", votes: 4),
+                        PollOption(title: "8", votes: 2),
+                        PollOption(title: "7", votes: 4),
+                        PollOption(title: "6", votes: 3),
+                        PollOption(title: "5", votes: 2),
+                        PollOption(title: "4", votes: 3),
+                        PollOption(title: "3", votes: 4),
+                        PollOption(title: "2", votes: 2),
+                        PollOption(title: "1", votes: 3),
+                        PollOption(title: "0", votes: 2),
                     ]
                 ),
                 
@@ -60,5 +58,3 @@ extension Model {
     }
     
 }
-
-#endif
