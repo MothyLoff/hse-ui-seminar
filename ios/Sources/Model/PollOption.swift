@@ -1,25 +1,32 @@
 //  Option.swift, created by Timowa on 10.11.2026
 
 import Foundation
+import Observation
 
 
-struct PollOption: Identifiable {
+@Observable
+final class PollOption: Identifiable {
     
-    var id: UUID = UUID()
-    
+    weak var poll: Poll?
+
     var title: String
     var votes: Int
     
-}
-
-
-extension PollOption: Comparable {
+    init(poll: Poll? = nil, title: String, votes: Int) {
+        self.poll = poll
+        self.title = title
+        self.votes = votes
+    }
     
-    static func < (
-        lhs: borrowing PollOption,
-        rhs: borrowing PollOption
-    ) -> Bool {
-        lhs.votes < rhs.votes
+    var voteFraction: Double {
+        guard let voteCount = poll?.voteCount, voteCount > 0 else { return 0 }
+        return Double(votes) / Double(voteCount)
+    }
+
+    func fillPercent() -> Double? {
+        guard let maxCount = self.poll?.maxVoteCount else { return nil }
+        guard maxCount > 0 else { return 0 }
+        return Double(votes) / Double(maxCount)
     }
     
 }

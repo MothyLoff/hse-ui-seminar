@@ -15,6 +15,10 @@ final class Model {
     func add(poll: Poll) {
         polls.append(poll)
     }
+
+    func remove(poll: Poll) {
+        polls.removeAll { $0 === poll }
+    }
     
 }
 
