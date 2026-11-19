@@ -16,6 +16,28 @@ let project = Project(
             ]),
             sources: ["Sources/**"],
             dependencies: []
+        ),
+        
+        .target(
+            name: "PollarCore",
+            destinations: [.iPhone],
+            product: .staticFramework,
+            bundleId: "com.timothyloff.pollar.core",
+            deploymentTargets: .iOS("27.0"),
+            infoPlist: .default,
+            sources: ["Core/Sources/**"]
+        ),
+        .target(
+            name: "PollarCoreTests",
+            destinations: [.iPhone],
+            product: .unitTests,
+            bundleId: "com.timothyloff.pollar.core.tests",
+            deploymentTargets: .iOS("27.0"),
+            infoPlist: .default,
+            sources: ["Core/Tests/**"],
+            dependencies: [
+                .target(name: "PollarCore")
+            ]
         )
     ]
 )
