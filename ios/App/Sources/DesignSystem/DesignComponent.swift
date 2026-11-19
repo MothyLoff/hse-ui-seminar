@@ -1,4 +1,5 @@
-import CoreGraphics
+import PollarCore
+import SwiftUI
 
 
 enum DesignComponent {
@@ -94,3 +95,12 @@ extension DesignComponent.Poll.Tag.Padding {
     }
 }
 
+
+#Preview {
+    
+    @Previewable @State var polls: [Poll] = [Poll.debugInstance]
+    
+    PollView(poll: Poll.debugInstance)
+        .padding(.horizontal, 8)
+        
+}
