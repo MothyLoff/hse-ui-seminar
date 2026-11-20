@@ -5,19 +5,36 @@ let project = Project(
     settings: .settings(base: ["SWIFT_VERSION": "6.0"]),
     targets: [
         .target(
-            name: "VotingApp",
-            destinations: [.iPhone, .iPad],
+            name: "Pollar",
+            destinations: [.iPhone],
             product: .app,
-            bundleId: "com.timothyloff.votingapp",
-            deploymentTargets: .iOS("26.0"),
+            bundleId: "com.timothyloff.pollar.app",
+            deploymentTargets: .iOS("27.0"),
             infoPlist: .extendingDefault(with: [
-                "CFBundleDisplayName": "Голосования",
-                "UILaunchScreen": [:]
+                "CFBundleDisplayName": "Pollar",
+                "UILaunchScreen": [:],
+                "UIApplicationSceneManifest": [
+                    "UIApplicationSupportsMultipleScenes": false,
+                    "UISceneConfigurations": [
+                        "UIWindowSceneSessionRoleApplication": [
+                            [
+                                "UISceneConfigurationName": "Main",
+                                "UISceneClassName": "UIWindowScene",
+                                "UISceneDelegateClassName": "$(PRODUCT_MODULE_NAME).SceneDelegate"
+                            ]
+                        ]
+                    ]
+                ]
             ]),
-            sources: ["Sources/**"],
-            dependencies: []
+            sources: ["App/Sources/**"],
+            dependencies: [
+                .target(name: "PollarCore")
+            ],
+            settings: .settings(base: [
+                "DEVELOPMENT_TEAM": "72UHRA8X5G",
+                "CODE_SIGN_STYLE": "Automatic"
+            ])
         ),
-        
         .target(
             name: "PollarCore",
             destinations: [.iPhone],
