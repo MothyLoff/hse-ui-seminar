@@ -65,11 +65,13 @@ extension Poll.Option {
         guard
             let pollTotalVoteCount: Int = self.poll?.totalVoteCount,
             pollTotalVoteCount > 0
-        else {
-            return 0
-        }
+                else { return 0 }
         let fraction = Double(self.voteCount) / Double(pollTotalVoteCount)
         return Int(fraction * 100)
+    }
+    
+    public var isTopOption: Bool {
+        self.voteCount > 0 && self.maxPollVoteCount == self.voteCount
     }
     
 }
