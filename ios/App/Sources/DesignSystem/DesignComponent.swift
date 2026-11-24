@@ -1,4 +1,4 @@
-import CoreGraphics
+import UIKit
 
 
 enum DesignComponent {
@@ -33,6 +33,24 @@ enum DesignComponent {
             static let strokeVisibleWidth: CGFloat = 3
         }
     }
+}
+
+
+extension DesignComponent {
+
+    static func bodySemibold(
+        compatibleWith traits: UITraitCollection
+    ) -> UIFont {
+        let font = UIFont.systemFont(
+            ofSize: DefaultFontSize.body,
+            weight: .semibold
+        )
+        return UIFontMetrics(forTextStyle: .body).scaledFont(
+            for: font,
+            compatibleWith: traits
+        )
+    }
+
 }
 
 

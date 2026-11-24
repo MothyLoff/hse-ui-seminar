@@ -1,24 +1,32 @@
 #if DEBUG
-
-
 import PollarCore
 
 
 extension Poll {
-    
-    public static var debug: Poll {
-        return Poll(
-            "Что круче?",
-            description: "Выбираем супер крутой язык программирования для того чтоб написать бизнес логику"
-        ) {
-            PollOption("Swift", voteCount: 5)
-            PollOption("C++", voteCount: 1)
-            PollOption("Kotlin", voteCount: 3)
-            PollOption("Python", voteCount: 5)
+
+    static var samples: [Poll] {
+        let lunch = try! Poll(
+            title: "Где обедаем после семинара?",
+            description: "Выберем место, куда пойдём всей группой.",
+            optionTitles: [
+                "В столовой", "В кафе у кампуса", "В пекарне", "Возьмём с собой",
+                "В бистро", "В парке", "В пиццерии", "В лапшичной",
+                "В бургерной", "В кофейне", "В чайной", "В фудкорте",
+                "В хинкальной", "В блинной",
+            ]
+        )
+        let languages = try! Poll(
+            title: "Какой язык разбираем следующим?",
+            optionTitles: ["Swift", "Kotlin"]
+        )
+        for (option, count) in zip(languages.options, [16, 10]) {
+            for _ in 0..<count {
+                try! languages.vote(for: option.id)
+            }
         }
+        languages.finish()
+        return [lunch, languages]
     }
-    
+
 }
-
-
 #endif
